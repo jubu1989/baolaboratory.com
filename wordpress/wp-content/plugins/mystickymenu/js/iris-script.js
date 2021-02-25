@@ -56,4 +56,26 @@ jQuery(document).ready(function($){
     if(jQuery(".multiple-options.has-multiple-websites").length) {
         jQuery(".multiple-options.has-multiple-websites").trigger("change");
     }
+	checkForPricingPos();
+	jQuery(window).on("scroll", function(){
+		checkForPricingPos();
+	});
+
+	jQuery(window).on("resize", function(){
+		checkForPricingPos();
+	});
+	function checkForPricingPos() {
+		jQuery(".bottom-position").each(function(){
+			console.log(jQuery(this).offset().top - jQuery(window).scrollTop() - jQuery(window).height());
+			if( jQuery(this).offset().top - jQuery(window).scrollTop() - jQuery(window).height() < -3) {
+				jQuery(this).closest(".price-table").removeClass("is-fixed");
+				jQuery(this).closest(".price-table").find(".price-table-bottom").prop("style", "");
+			} else {
+				jQuery(this).closest(".price-table").addClass("is-fixed");
+				jQuery(this).closest(".price-table").find(".price-table-bottom").css("top", (jQuery(window).height() - 125 )+"px");
+				jQuery(this).closest(".price-table").find(".price-table-bottom").css("left", jQuery(this).offset().left+"px");
+				jQuery(this).closest(".price-table").find(".price-table-bottom").outerWidth(jQuery(this).closest(".price-table").width());
+			}
+		});
+	}
 });

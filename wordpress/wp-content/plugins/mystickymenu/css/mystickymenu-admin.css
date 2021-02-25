@@ -513,7 +513,20 @@ ul.mystickymenu-input-multicheckbox li span {
 td {
     vertical-align: top !important;
 }
+p.description.mystuckymenu-class-id {
+	display: flex;
+    margin: 12px 0 0 0;
+    line-height: 1.5;
+}
 
+p.description.mystuckymenu-class-id .dashicons-controls-play{
+	background: #a4a5a5;
+	color: #ffffff;
+	border-radius: 50%;
+}
+p.description.mystuckymenu-class-id .dashicons-controls-play::before {    
+    margin-left: 2px;
+}
 p.description {
     color: rgba(79, 79, 79, 0.5);
     font-size: 12px;

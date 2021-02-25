@@ -3,12 +3,12 @@
 
 	jQuery(document).ready(function($){
 
-		$(document).on("click", ".updates-content-buttons button", function(){
+		$(document).on("click", ".updates-form button", function(){
 			var updateStatus = 0;
 			if($(this).hasClass("yes")) {
 				updateStatus = 1;
 			}
-			$(".updates-content-buttons button").attr("disabled", true);
+			$(".updates-form button").attr("disabled", true);
 			$.ajax({
 				url: ajaxurl,
 				data: "action=sticky_menu_update_status&status="+updateStatus+"&nonce="+$("#myStickymenu_update_nonce").val()+"&email="+$("#myStickymenu_update_email").val(),

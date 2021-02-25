@@ -763,8 +763,9 @@ class Premium_Title extends Widget_Base {
 					'value' => Scheme_Color::COLOR_1,
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .premium-title-header' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .premium-title-style8 .premium-title-text[data-animation="shiny"]' => '--base-color: {{VALUE}} ',
+					'{{WRAPPER}} .premium-title-header' => 'color: {{VALUE}}',
+					'{{WRAPPER}}.premium-title-stroke-yes .premium-title-text' => '-webkit-text-fill-color: {{VALUE}}',
+					'{{WRAPPER}} .premium-title-style8 .premium-title-text[data-animation="shiny"]' => '--base-color: {{VALUE}}',
 				),
 			)
 		);
@@ -1015,6 +1016,52 @@ class Premium_Title extends Widget_Base {
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .premium-title-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'stroke_switcher',
+			array(
+				'label'        => __( 'Stroke', 'premium-addons-for-elementor' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'prefix_class' => 'premium-title-stroke-',
+				'condition'    => array(
+					'premium_title_style!' => 'style9',
+				),
+			)
+		);
+
+		$this->add_control(
+			'stroke_text_color',
+			array(
+				'label'     => __( 'Stroke Color', 'premium-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => array(
+					'stroke_switcher'      => 'yes',
+					'premium_title_style!' => 'style9',
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .premium-title-text' => '-webkit-text-stroke-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'stroke_width',
+			array(
+				'label'     => __( 'Stroke Fill Width', 'premium-addons-for-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'condition' => array(
+					'stroke_switcher'      => 'yes',
+					'premium_title_style!' => 'style9',
+				),
+				'default'   => array(
+					'size' => 1,
+					'unit' => 'px',
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .premium-title-text' => '-webkit-text-stroke-width: {{SIZE}}px',
 				),
 			)
 		);

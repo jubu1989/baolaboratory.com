@@ -472,7 +472,7 @@ a.create-rule {
 				buttons: {
 					"Hide it": {
 						click: function () {										
-							window.location = "<?php echo admin_url('admin.php?page=my-stickymenu-settings&hide_msmrecommended_plugin=1');?>";
+							window.location = "<?php echo admin_url('admin.php?page=my-stickymenu-welcomebar&hide_msmrecommended_plugin=1');?>";
 						},
 						text: 'Hide it',
 						class: 'btn red-btn'

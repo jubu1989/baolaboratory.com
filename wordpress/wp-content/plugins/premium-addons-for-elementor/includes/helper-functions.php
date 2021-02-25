@@ -509,7 +509,7 @@ class Helper_Functions {
 				$expire_time = 365 * DAY_IN_SECONDS;
 				break;
 			default: 
-				$expire_time = 365 * DAY_IN_SECONDS;ak;	
+				$expire_time = 365 * DAY_IN_SECONDS;
 		}
 
 		return $expire_time;

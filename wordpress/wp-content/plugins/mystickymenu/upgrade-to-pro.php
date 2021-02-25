@@ -47,6 +47,7 @@ $pro_url = "https://go.premio.io/checkount/?edd_action=add_to_cart&download_id=2
                                         </div>
                                         <a class="cart-link" target="_blank" href="https://go.premio.io/?edd_action=add_to_cart&amp;download_id=2199&amp;edd_options[price_id]=1">Buy now</a>
                                     </div>
+									<div class="bottom-position"></div>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12">
@@ -87,6 +88,7 @@ $pro_url = "https://go.premio.io/checkount/?edd_action=add_to_cart&download_id=2
                                         </div>
                                         <a class="cart-link" target="_blank" href="https://go.premio.io/?edd_action=add_to_cart&amp;download_id=2199&amp;edd_options%5Bprice_id%5D=2">Buy now</a>
                                     </div>
+									<div class="bottom-position"></div>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-12">
@@ -135,6 +137,7 @@ $pro_url = "https://go.premio.io/checkount/?edd_action=add_to_cart&download_id=2
                                         </div>
                                         <a class="cart-link" target="_blank" href="https://go.premio.io/?edd_action=add_to_cart&amp;download_id=2199&amp;edd_options%5Bprice_id%5D=3">Buy now</a>
                                     </div>
+									<div class="bottom-position"></div>
                                 </div>
                             </div>
                         </div>

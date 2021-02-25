@@ -749,7 +749,7 @@
                 /"/g, "&quot;").replace(/'/g, "&#039;");
         }
 
-        if (settings.effect === "typing") {
+        if ("typing" === settings.effect) {
 
             var fancyStrings = [];
             settings.strings.forEach(function (item) {
@@ -767,7 +767,7 @@
                 loop: settings.loop
             });
 
-        } else if (settings.effect === "slide") {
+        } else if ("slide" === settings.effect) {
 
             $elem.find(".premium-fancy-text").vTicker({
                 speed: settings.speed,
@@ -775,6 +775,22 @@
                 pause: settings.pause,
                 mousePause: settings.mousePause,
                 direction: "up"
+            });
+
+        } else if ('auto-fade' === settings.effect) {
+            var $items = $elem.find(".premium-fancy-list-items"),
+                len = $items.length;
+
+            if (0 === len) {
+                return;
+            }
+
+            var delay = settings.duration / len,
+                itemDelay = 0;
+
+            $items.each(function ($index, $item) {
+                $item.style.animationDelay = itemDelay + 'ms';
+                itemDelay += delay;
             });
 
         } else {

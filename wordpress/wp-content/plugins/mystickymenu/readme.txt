@@ -1,21 +1,21 @@
-===Sticky Menu on Scroll, Sticky Header, Floating Notification Bar for Any Theme - myStickymenu===
+===Floating Notification Bar, Sticky Menu on Scroll, and Sticky Header for Any Theme - myStickymenu===
 Contributors: tomeraharon, galdub, premio
-Tags:menu, header, sticky menu, sticky header, floating menu, floating navigation menu, navigation menu, navigation, sticky navigation menu, welcome bar, hello bar, top bar, sticky bar, floating bar, notification bar
+Tags:floating bar, notification bar, menu, header, sticky menu, sticky header, floating menu, floating navigation menu, navigation menu, navigation, sticky navigation menu, welcome bar, hello bar, top bar, sticky bar
 Requires at least: 3.5.1
 Tested up to: 5.6
-Stable tag: 2.4.9
+Stable tag: 2.5
 License: GPLv2 or later
 
-This sticky menu plugin will make your menu or header stick to the top of page, when scrolled down and up. Also create a beautiful welcome notification bar with it.
+Create a beautiful welcome notification bar. This sticky menu plugin will also make your menu or header stick to the top of page, when scrolled down and up.
 
 == Description ==
-<strong>This sticky menu plugin will make your menu or header sticky on top of page, after desired number of pixels when scrolled. You can use it also to create a Welcome bar for announcements, promotion and more. This lightweight plugin will help your visitors navigate easily and reach to the navigation menu without wasting time. Install My Sticky Menu and improve your website’s user experience! If you want to change the CSS style, disable on scroll down or disable on specific pages. check out the <a href="https://premio.io/downloads/mystickymenu/" target="_blank" title="mystickymenu pro plans">Pro version</a>.</strong>
+<strong>Use myStickymenu to create a beautiful notification bar for you website. You can also use this sticky menu plugin will make your menu or header sticky on top of page, after desired number of pixels when scrolled. You can use it also to create a Welcome bar for announcements, promotion and more. This lightweight plugin will help your visitors navigate easily and reach to the navigation menu without wasting time. Install My Sticky Menu and improve your website’s user experience! If you want to change the CSS style, disable on scroll down or disable on specific pages. check out the <a href="https://premio.io/downloads/mystickymenu/" target="_blank" title="mystickymenu pro plans">Pro version</a>.</strong>
 
 By default, myStickymenu should make your menu sticky without any adjustments on your end - which means your menu should become sticky right out of the box. Sticky menu is designed to use element class ".navbar" as "Sticky Class". That value should be modified in plugin settings for different themes to make it work. Sticky Class is actually nothing more than an element class (or id) of the element that should become sticky.
 
 [youtube  https://www.youtube.com/watch?v=G_7swGnRmN0]
 
-<strong>📢 New feature:</strong> Welcome Bar. Use this powerful feature to create a beautiful floating sticky notification bar. No coding skill required, just turn it on, set up your announcement text and button, and voilà - your top notification bar is good to go! 
+<strong>📢 Welcome Bar:</strong> Use this powerful feature to create a beautiful floating sticky notification bar. No coding skill required, just turn it on, set up your announcement text and button, and voilà - your top notification bar is good to go! 
 
 <strong>Let your visitors know about your company's Coronavirus COVID-19 updates</strong> - due to the latest Coronavirus COVID-19 outbreak, many of our users use the welcome bar to announce about their Coronavirus COVID-19 updates. You can use the notification bar as a Corona Virus - COVID-19 banner to make sure your visitors are up-to-date.
 
@@ -33,18 +33,6 @@ My Sticky Menu plugin is originally designed for Twenty Thirteen template but sh
 
 My Sticky Menu is tested and compatible with Elementor website builder, Divi, WPBakery, Gutenberg, Visual composer, Beaver and other WordPress website builders.
 
-= WITH MY STICKY MENU YOU CAN: =
-* Show sticky header on scroll down/up
-* Fade or slide effect
-* Disable at small screen
-* Choose when to make visible on scroll
-* Change the font color when the menu is sticky
-* Change the background color
-* Change the opacity
-* Change the sticky transition time
-* Define the z-index of the sticky header
-* Set an entrance effect for your sticky menu
-
 = WITH WELCOME BAR FEATURES YOU CAN: =
 * Display your floating bar at top position
 * Change the background and button colors for your hello bar
@@ -57,13 +45,17 @@ My Sticky Menu is tested and compatible with Elementor website builder, Divi, WP
 * Show the call-to-action button in your top notification bar on desktop/mobile
 * Redirect your visitors to another URL on-click
 
-= WHAT DO YOU GET IN THE PRO PLAN =
-* Disable floating menu on Desktop/Mobile
-* Disable floating menu on scroll down
-* Add CSS style to the floating header
-* Disable/enable floating header on specific pages
-
-But wait, there's more 😉
+= WITH MY STICKY MENU YOU CAN: =
+* Show sticky header on scroll down/up
+* Fade or slide effect
+* Disable at small screen
+* Choose when to make visible on scroll
+* Change the font color when the menu is sticky
+* Change the background color
+* Change the opacity
+* Change the sticky transition time
+* Define the z-index of the sticky header
+* Set an entrance effect for your sticky menu
 
 = Welcome Bar Pro Features =
 * Multi Welcome Bar - Create a separate notification bar for different pages based on page targeting rules (E.g. seperate notification bar for different languages, different product categories and much more)
@@ -77,7 +69,15 @@ But wait, there's more 😉
 * New: You can set a thank you screen which appears after the button is clicked (can be used for coupons or any other message you want to show your visitors after they click on the button)
 * New: Add a rel Attribute to your notification bar button
 
-<a href="https://premio.io/downloads/mystickymenu/" target="_blank" title="mystickymenu pro plans"><strong>>>> See Pro plans here</strong></a> 
+But wait, there's more 😉
+
+= WHAT DO YOU GET IN THE PRO PLAN =
+* Disable floating menu on Desktop/Mobile
+* Disable floating menu on scroll down
+* Add CSS style to the floating header
+* Disable/enable floating header on specific pages
+
+<a href="https://premio.io/downloads/mystickymenu/" target="_blank" title="mystickymenu pro plans"><strong>>>> See Pro plans here 🚀</strong></a> 
 
 = Live Demo =
 A live demo for myStickymenu plugin and notification bar is available at <a href="https://demo.premio.io/mystickymenu/?utm_source=wordpressorg" target="_blank" title="Premio.io demo site">Premio's demo site</a>.
@@ -96,8 +96,7 @@ This plugin does exactly what it should. It is simple but powerful. I would sugg
 
 
 == Installation ==
-Install like any other plugin. After install activate. 
-Go to Settings / myStickymenu and change Sticky Class to .your_navbar_class or #your_navbar_id . Sticky Class should be HTML id or class of the HTML element desired to be sticky… Clear WordPress cache if exists.
+After you activate the plugin, you should be able to create your first notification bar with ease, just customize the apperance and save. If you want to create a sticky menu, in most cases the plugin should be able to find the class/ID for the menu, if not then change sticky class/id to .your_navbar_class or #your_navbar_id - you might need to purge cache after saving.
 
 For example:
 
@@ -268,6 +267,8 @@ After installing the plugin, you’ll have the option to turn on the welcome bar
 
 
 == Changelog ==
+= 2.5 =
+Better instructions for the sticky menu feature & explainer video
 = 2.4.9 =
 Mobile bug fixed
 = 2.4.8 =

@@ -37,7 +37,8 @@ class Premium_Image_Scroll extends Widget_Base {
 	 * @access public
 	 */
 	public function getTemplateInstance() {
-		return $this->templateInstance = Premium_Template_Tags::getInstance();
+		$this->template_instance = Premium_Template_Tags::getInstance();
+		return $this->template_instance;
 	}
 
 	/**
@@ -861,9 +862,13 @@ class Premium_Image_Scroll extends Widget_Base {
 			'reverse'   => $settings['reverse'],
 		);
 
-		$this->add_render_attribute( 'container', 'class', 'premium-image-scroll-container' );
-
-		$this->add_render_attribute( 'container', 'data-settings', wp_json_encode( $image_scroll ) );
+		$this->add_render_attribute(
+			'container',
+			array(
+				'class'         => 'premium-image-scroll-container',
+				'data-settings' => wp_json_encode( $image_scroll ),
+			)
+		);
 
 		$this->add_render_attribute( 'direction_type', 'class', 'premium-image-scroll-' . $settings['direction_type'] );
 
@@ -912,7 +917,7 @@ class Premium_Image_Scroll extends Widget_Base {
 							?>
 							</div> 
 							<?php
-						endif;
+							endif;
 							echo wp_kses_post( $image_html );
 						?>
 					</div>
@@ -944,14 +949,17 @@ class Premium_Image_Scroll extends Widget_Base {
 			scrollSettings.trigger = trigger;
 			scrollSettings.direction = direction,
 			scrollSettings.reverse  = reverse;
+
 			if ( 'yes' == settings.icon_switcher ) {
 				var iconClass = 'pa-' + direction + '-mouse-scroll';
 			}
 
-
 			if ( 'yes' == settings.link_switcher ) {
+
 				view.addRenderAttribute( 'link', 'class', 'premium-image-scroll-link' );
+
 				url = 'url' == linkType ? settings.link.url : settings.existing_page;
+
 				view.addRenderAttribute( 'link', 'href',  url );
 
 				if ( 'yes' == settings.link_switcher ) {
@@ -967,7 +975,7 @@ class Premium_Image_Scroll extends Widget_Base {
 
 			view.addRenderAttribute( 'image', 'src', settings.image.url );
 
-			if(settings.mask_image_scroll_switcher && settings.mask_image_scroll_switcher ==='yes'){
+			if( settings.mask_image_scroll_switcher && 'yes' === settings.mask_image_scroll_switcher ) {
 				view.addRenderAttribute( 'direction_type', 'class', 'premium-image-scroll-mask-media');
 			}
 
@@ -986,7 +994,7 @@ class Premium_Image_Scroll extends Widget_Base {
 			imageHtml = '<img src="' + image_url + '"/>';
 
 		}
-		if(settings.mask_image_scroll_switcher === 'yes' && settings.mask_shape_image_scroll.url !== '' && settings.image_scroll_shadow === 'yes'){
+		if( 'yes' === settings.mask_image_scroll_switcher && settings.mask_shape_image_scroll.url !== '' && 'yes' === settings.image_scroll_shadow ) {
 			view.addRenderAttribute( 'shadow', 'style', 'filter: drop-shadow('+settings.image_scroll_shadow_color +' '+ settings.image_scroll_shadow_h.size +'px '+ settings.image_scroll_shadow_v.size +'px '+ settings.image_scroll_shadow_blur.size+'px '+')' );
 		}
 

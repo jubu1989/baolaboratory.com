@@ -3,9 +3,9 @@ Contributors: Leap13, Rimoun
 Tags: elementor, elementor addons, elementor widgets, elementor elements, elementor templates
 Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme
 Requires at least: 5.0
-Tested Up To: 5.6.1
+Tested Up To: 5.6.2
 Requires PHP: 5.4
-Stable Tag: 4.2.3
+Stable Tag: 4.2.4
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -187,6 +187,12 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 4.2.4 =
+
+- Tweak: Added Text Stroke option in Heading widget.
+- Tweak: Added Auto Fade effect to Fancy Text widget.
+- Fixed: Widgets are not showing in Elementor widget panel in some themes.
 
 = 4.2.3 =
 

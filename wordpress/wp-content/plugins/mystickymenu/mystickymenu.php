@@ -3,7 +3,7 @@
 Plugin Name: myStickymenu
 Plugin URI: https://premio.io/
 Description: Simple sticky (fixed on top) menu implementation for navigation menu and Welcome bar for announcements and promotion. After install go to Settings / myStickymenu and change Sticky Class to .your_navbar_class or #your_navbar_id.
-Version: 2.4.9
+Version: 2.5
 Author: Premio
 Author URI: https://premio.io/downloads/mystickymenu/
 Text Domain: mystickymenu
@@ -12,7 +12,7 @@ License: GPLv2 or later
 */
 
 defined('ABSPATH') or die("Cannot access pages directly.");
-define( 'MYSTICKY_VERSION', '2.4.9' );
+define( 'MYSTICKY_VERSION', '2.5' );
 define('MYSTICKYMENU_URL', plugins_url('/', __FILE__));  // Define Plugin URL
 define('MYSTICKYMENU_PATH', plugin_dir_path(__FILE__));  // Define Plugin Directory Path
 
@@ -65,7 +65,7 @@ class MyStickyMenuBackend
                 $handle = curl_init();
                 curl_setopt($handle, CURLOPT_URL, $url);
                 curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($handle);
+                $response = curl_exec($handle);				
                 curl_close($handle);
             }
         }
@@ -74,8 +74,8 @@ class MyStickyMenuBackend
     }
 
 	public function mystickymenu_settings_link($links){
-		$settings_link = '<a href="admin.php?page=my-stickymenu-settings">Settings</a>';
-		$links['go_pro'] = '<a href="'.admin_url("admin.php?page=my-stickymenu-settings&type=upgrade").'" style="color: #FF5983;font-weight: bold;">'.__( 'Upgrade', 'stars-testimonials' ).'</a>';
+		$settings_link = '<a href="admin.php?page=my-stickymenu-welcomebar">Settings</a>';
+		$links['go_pro'] = '<a href="'.admin_url("admin.php?page=my-stickymenu-upgrade&type=upgrade").'" style="color: #FF5983; font-weight: bold; display: inline-block; border: solid 1px #FF5983; border-radius: 4px; padding: 0 5px;">'.__( 'Upgrade', 'stars-testimonials' ).'</a>';
 		array_unshift($links, $settings_link);
 		return $links;
 	}
@@ -90,7 +90,7 @@ class MyStickyMenuBackend
             if($option === false) {
                 add_option("mystickymenu_intro_box", "show");
             }
-			wp_redirect( admin_url( 'admin.php?page=my-stickymenu-settings' ) ) ;
+			wp_redirect( admin_url( 'admin.php?page=my-stickymenu-welcomebar' ) ) ;
 			exit;
 		}
 	}
@@ -142,36 +142,40 @@ class MyStickyMenuBackend
 			'Settings Admin',
 			'myStickymenu',
 			'manage_options',
-			'my-stickymenu-settings',
-			array( $this, 'create_admin_page' )
+			'my-stickymenu-welcomebar',
+			array( $this, 'mystickystickymenu_admin_welcomebar_page' )
 		);
 		add_submenu_page(
-			'my-stickymenu-settings',
-			'Settings Admin',
-			'Settings',
-			'manage_options',
-			'my-stickymenu-settings',
-			array( $this, 'create_admin_page' )
-		);
-		add_submenu_page(
-			'my-stickymenu-settings',
+			'my-stickymenu-welcomebar',
 			'Settings Admin',
 			'Welcome Bar',
 			'manage_options',
 			'my-stickymenu-welcomebar',
 			array( $this, 'mystickystickymenu_admin_welcomebar_page' )
 		);
+		
 		add_submenu_page(
-			'my-stickymenu-settings',
+			'my-stickymenu-welcomebar',
 			'Settings Admin',
 			'+ Create New Welcome Bar',
 			'manage_options',
 			'my-stickymenu-new-welcomebar',				
 			array( $this, 'mystickystickymenu_admin_new_welcomebar_page' )
 		);
+		
+		add_submenu_page(
+			'my-stickymenu-welcomebar',
+			'Settings Admin',
+			'Sticky menu settings',
+			'manage_options',
+			'my-stickymenu-settings',
+			array( $this, 'create_admin_page' )
+		);
+		
+		
 		if ( !$hide_msmrecommended_plugin){
 			add_submenu_page(
-				'my-stickymenu-settings',
+				'my-stickymenu-welcomebar',
 				'msm-recommended-plugins',
 				'Recommended Plugins',
 				'manage_options',
@@ -180,7 +184,7 @@ class MyStickyMenuBackend
 			);
 		}
 		add_submenu_page(
-			'my-stickymenu-settings',
+			'my-stickymenu-welcomebar',
 			'Upgrade to Pro',
 			'Upgrade to Pro',
 			'manage_options',
@@ -218,24 +222,10 @@ class MyStickyMenuBackend
         $pro_url = "https://go.premio.io/?edd_action=add_to_cart&download_id=2199&edd_options[price_id]=";
 		
         $is_shown = get_option("mystickymenu_update_message");
-        if($is_shown == 1) {?>
-            <div class="updates-form-form" >
-                <div class="popup-form-content">
-                    <div id="add-update-folder-title" class="add-update-folder-title">
-                        Would you like to get feature updates for myStickymenu in real-time?
-                    </div>
-                    <div class="folder-form-input">
-                        <input id="myStickymenu_update_email" autocomplete="off" value="<?php echo get_option( 'admin_email' ) ?>" placeholder="Email address">
-                    </div>
-                    <div class="updates-content-buttons">
-                        <button href="javascript:;" class="button button-primary form-submit-btn yes">Yes, I want</button>
-                        <button href="javascript:;" class="button button-secondary form-cancel-btn no">Skip</button>
-                        <div style="clear: both"></div>
-                    </div>
-                    <input type="hidden" id="myStickymenu_update_nonce" value="<?php echo wp_create_nonce("myStickymenu_update_nonce") ?>">
-                </div>
-            </div>
-        <?php } else {
+        if($is_shown == 1) {
+			
+			include_once MYSTICKYMENU_PATH . '/update.php';
+		} else {
 
             $option = get_option("mystickymenu_intro_box");
             if($option == "show") {
@@ -257,8 +247,9 @@ class MyStickyMenuBackend
 		<div id="mystickymenu" class="wrap mystickymenu">
 			<div class="sticky-header-menu">
 				<ul>
-					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-settings' ) ?>" class="active" ><?php _e('Sticky Menu', 'mystickymenu'); ?></a></li>
 					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-welcomebar' ) ?>" ><?php _e('Welcome Bar', 'mystickymenu'); ?></a></li>
+					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-settings' ) ?>" class="active" ><?php _e('Sticky Menu', 'mystickymenu'); ?></a></li>
+					
 					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-upgrade' ) ?>"><?php _e('Upgrade to Pro', 'mystickymenu'); ?></a></li>
 				</ul>
 			</div>
@@ -322,8 +313,13 @@ class MyStickyMenuBackend
 								</select>
 
 								<input type="text" size="18" id="mysticky_class_selector" class="mystickyinput" name="mysticky_option_name[mysticky_class_selector]" value="<?php echo $mysticky_options['mysticky_class_selector'];?>"  />
-
-								<p class="description"><?php _e("menu or header element class or id.", 'mystickymenu')?></p>
+								
+								<p class="description mystuckymenu-class-id">
+									<span class="dashicons dashicons-info"></span>&nbsp;
+									<span>
+									<?php echo sprintf(__('Need help finding your ID/Class? Install <a href="%s" target="_blank">CSS Peeper</a> to quickly get your navigation menu ID/Class. Here\'s a quick <a href="%s" target="_blank">video <span class="dashicons dashicons-controls-play"></span></a> of how you can do it.', 'mystickymenu'), 'https://chrome.google.com/webstore/detail/css-peeper/mbnbehikldjhnfehhnaidhjhoofhpehk?hl=en', 'https://www.youtube.com/watch?v=uuNqSkBPnLU');?>	
+									</span>
+								</p>
 							</td>
 							<td>
 								<div class="mysticky_device_upgrade">
@@ -692,6 +688,14 @@ class MyStickyMenuBackend
 	}
 	
 	public function mystickystickymenu_admin_welcomebar_page() {
+		
+		 $is_shown = get_option("mystickymenu_update_message");
+        if($is_shown == 1) {
+			
+			include_once MYSTICKYMENU_PATH . '/update.php';
+			return;
+		} 
+		
 		/* welcome bar save data  */
 		if (isset($_POST['mysticky_option_welcomebar']) && !empty($_POST['mysticky_option_welcomebar']) && isset($_POST['nonce'])) {
 			if(!empty($_POST['nonce']) && wp_verify_nonce($_POST['nonce'], 'mysticky_option_welcomebar_update')) {						
@@ -746,8 +750,8 @@ class MyStickyMenuBackend
 		<div id="mystickymenu" class="wrap mystickymenu">
 			<div class="sticky-header-menu">
 				<ul>
-					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-settings' ) ?>"><?php _e('Sticky Menu', 'mystickymenu'); ?></a></li>
 					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-welcomebar' ) ?>" class="active" ><?php _e('Welcome Bar', 'mystickymenu'); ?></a></li>
+					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-settings' ) ?>"><?php _e('Sticky Menu', 'mystickymenu'); ?></a></li>					
 					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-upgrade' ) ?>"><?php _e('Upgrade to Pro', 'mystickymenu'); ?></a></li>
 				</ul>
 			</div>
@@ -778,8 +782,8 @@ class MyStickyMenuBackend
 		<div id="mystickymenu" class="wrap mystickymenu">
 			<div class="sticky-header-menu">
 				<ul>
-					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-settings' ) ?>"><?php _e('Sticky Menu', 'mystickymenu'); ?></a></li>
 					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-welcomebar' ) ?>" ><?php _e('Welcome Bar', 'mystickymenu'); ?></a></li>
+					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-settings' ) ?>"><?php _e('Sticky Menu', 'mystickymenu'); ?></a></li>					
 					<li><a href="<?php echo admin_url( 'admin.php?page=my-stickymenu-upgrade' ) ?>" class="active" ><?php _e('Upgrade to Pro', 'mystickymenu'); ?></a></li>
 				</ul>
 			</div>

@@ -65,8 +65,6 @@ class Addons_Integration {
 
 		add_action( 'elementor/editor/before_enqueue_styles', array( $this, 'enqueue_editor_styles' ) );
 
-		add_action( 'elementor/elements/categories_registered', array( $this, 'register_widgets_category' ), 9 );
-
 		add_action( 'elementor/widgets/widgets_registered', array( $this, 'widgets_area' ) );
 
 		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'enqueue_editor_scripts' ) );
@@ -184,28 +182,6 @@ class Addons_Integration {
 		wp_enqueue_style( 'pa-prettyphoto' );
 
 		wp_enqueue_style( 'premium-addons' );
-
-	}
-
-	/**
-	 * Register Widgets Category
-	 *
-	 * Register a new category for Premium Addons widgets
-	 *
-	 * @since 4.0.0
-	 * @access public
-	 *
-	 * @param object $elements_manager elements manager.
-	 */
-	public function register_widgets_category( $elements_manager ) {
-
-		$elements_manager->add_category(
-			'premium-elements',
-			array(
-				'title' => Helper_Functions::get_category(),
-			),
-			1
-		);
 
 	}
 
